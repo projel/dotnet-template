@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '⚙ Validando mensagem de commit...'
+dotnet husky run --group commit-msg --args "$1"

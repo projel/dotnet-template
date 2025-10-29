@@ -1,0 +1,82 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+#############################
+# Regras gerais (todos os arquivos)
+##############################
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+##############################
+# Regras de formatação (C#)
+##############################
+[*.cs]
+# --- Layout básico (usado por CSharpier) ---
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+# --- Desabilitar formatação do Roslyn ---
+# Isso faz o dotnet format NÃO alterar layout, apenas aplicar fixes/analyzers.
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_require_accessibility_modifiers = always:warning
+
+# Desliga a parte de "formatting"
+# (Essas opções impedem o dotnet format de ajustar espaços, quebras e indentação)
+csharp_space_after_cast = false
+csharp_space_before_colon_in_inheritance_clause = false
+csharp_space_around_binary_operators = ignore
+csharp_new_line_before_open_brace = all
+dotnet_format_enable = false  # (ainda experimental em algumas versões)
+# Em versões antigas, use apenas as regras abaixo para neutralizar formatação:
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
+
+##############################
+# Regras de estilo e análise (Roslyn)
+# Aplicadas pelo `dotnet format`
+##############################
+# Uso de 'var'
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = true:suggestion
+
+# Uso de this.
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+
+#Remover parâmetros não utilizados
+dotnet_code_quality_unused_parameters = all:warning
+
+# Expressões simplificadas
+dotnet_style_object_initializer = true:warning
+dotnet_style_collection_initializer = true:warning
+dotnet_style_prefer_simplified_interpolation = true:warning
+# Preferir expressões de coleção (C# 12+)
+csharp_style_collection_expression = true:warning
+
+# Braces obrigatórios
+csharp_prefer_braces = true:warning
+
+# Ordenação de usings
+dotnet_sort_system_directives_first = true:suggestion
+dotnet_separate_import_directive_groups = true
+
+# Preferir namespace no escopo de arquivo
+csharp_style_namespace_declarations = file_scoped:warning
+
+
+##############################
+# Analyzers adicionais (opcional)
+##############################
+dotnet_analyzer_diagnostic.severity = warning
+dotnet_code_quality_unused_parameters = all:warning
+dotnet_diagnostic.IDE0060.severity = warning  # Parâmetro não usado
+dotnet_diagnostic.IDE0005.severity = warning  # Using desnecessário

@@ -1,0 +1,18 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+echo '⛔ Bloqueando commits diretos nos branches protegidos...'
+dotnet husky run --name block-branches
+
+echo '🔧 Formatando com dotnet format (analyzers + estilo)...'
+dotnet husky run --name dotnet-format-style-staged-files
+
+echo '🎨 Formatando com CSharpier (layout final)...'
+dotnet husky run --name csharpier-staged-files
+
+echo '🧱 Buildando...'
+dotnet build --no-restore
+
+echo '🧪 Rodando testes...'
+dotnet test --no-restore
+
+echo '✅ Pre-commit concluído com sucesso!'

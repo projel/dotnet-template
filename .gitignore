@@ -1,0 +1,7 @@
+# Binários e arquivos de build
+**/bin/
+**/obj/
+
+# Configurações locais
+*.user
+*.vs

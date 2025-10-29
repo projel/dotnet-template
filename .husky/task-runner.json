@@ -1,0 +1,52 @@
+{
+   "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+   "tasks": [
+      {
+         "name": "block-branches",
+         "group": "block operations",
+         "command": "bash",
+         "args": [
+            "./scripts/protect-commits.sh"
+         ]
+      },
+      {
+         "name": "dotnet-format-style-staged-files",
+         "group": "pre-commit-operations",
+         "command": "dotnet",
+         "args": [
+            "format",
+            "style",
+            "--include",
+            "${staged}"
+         ],
+         "include": [
+            "**/*.cs"
+         ],
+         "filteringRule": "staged"
+      },
+      {
+         "name": "csharpier-staged-files",
+         "group": "pre-commit-operations",
+         "command": "dotnet",
+         "args": [
+            "csharpier",
+            "format",
+            "${staged}"
+         ],
+         "include": [
+            "**/*.cs"
+         ],
+         "filteringRule": "staged"
+      },
+      {
+         "name": "commit-message-linter",
+         "group": "commit-msg",
+         "command": "dotnet",
+         "args": [
+            "commit-lint",
+            "--commit-file",
+            "${args}"
+         ]
+      }
+   ]
+}

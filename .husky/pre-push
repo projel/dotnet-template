@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '⛔ Bloqueando pushes diretos nos branches protegidos...'
+dotnet husky run --name block-branches
